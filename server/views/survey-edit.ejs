@@ -1,0 +1,78 @@
+<!--
+    Centennial College
+    Web Application Development - COMP229 / Section 004
+   
+    Group Project - Survey Website
+   
+    Team:
+     - Carlos Gama    (301257092) / Project Manager
+     - Idris Mustapha (301207535) / Back-end Developer
+     - Jinsung Park   (301241866) / Front-end Developer
+     - Nabin Dotel    (301281044) / Front-end Developer
+     - Shristi Prasai (301310100) / Front-end Developer
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head'); %>
+</head>
+
+<body id="page-top">
+    
+    <!-- Navigation-->
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+    <!-- Page Content-->
+    <div class="container-fluid p-0">
+        <div class="form-container">
+            <div>
+                <form id="contact" name="contact" method="post" action="/contacts/edit">
+                    <fieldset class="fieldset">
+                        <legend class="fieldset-legend">Edit Contact</legend>
+                        <input type="hidden" name="id" value="<%= locals.contactToEdit._id %>" />
+                        <table>
+                            <tr>
+                                <td><label class="form-label" for="name">Name</label></td>
+                                <td>
+                                    <input class="form-control" type="text" id="name" name="name" placeholder="Enter a name..." value="<%= locals.contactToEdit.name %>" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" for="number">Phone Number</label></td>
+                                <td>
+                                    <input class="form-control" type="text" id="number" name="number" placeholder="Enter a phone number..." value="<%= locals.contactToEdit.number %>" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" for="email">Email</label></td>
+                                <td>
+                                    <input class="form-control" type="text" id="email" name="email" placeholder="Enter an email..." value="<%= locals.contactToEdit.email %>" required />
+                                </td>
+                            </tr>
+                            <tr style="line-height: 70px; text-align: center">
+                                <td colspan="2" >
+                                    <a href="/contacts"><input class="btn btn-secondary" type="button" value="CANCEL" /></a>
+                                    <input class="btn btn-success" style="margin-left: 20px;" type="submit" id="submitButton" value="CONFIRM" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </form>
+                <% if (locals.message) { %>
+                    <div id="form-error" class="text-danger">
+                        <%= locals.message %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer>
+    <%- include('./partials/footer'); %>
+</footer>
+
+</html>

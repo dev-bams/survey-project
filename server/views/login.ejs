@@ -1,0 +1,72 @@
+<!--
+    Centennial College
+    Web Application Development - COMP229 / Section 004
+   
+    Group Project - Survey Website
+   
+    Team:
+     - Carlos Gama    (301257092) / Project Manager
+     - Idris Mustapha (301207535) / Back-end Developer
+     - Jinsung Park   (301241866) / Front-end Developer
+     - Nabin Dotel    (301281044) / Front-end Developer
+     - Shristi Prasai (301310100) / Front-end Developer
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head'); %>
+</head>
+
+<body id="page-top">
+    
+    <!-- Navigation-->
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+    <!-- Page Content-->
+    <div class="container-fluid p-0">
+        <div class="form-container">
+            <div style="text-align: center">
+                <form id="login" name="login" method="post" action="/login/auth">
+                    <fieldset class="fieldset">
+                        <legend class="fieldset-legend">Login</legend>
+                        <table>
+                            <tr>
+                                <td><label class="form-label" for="username">Username</label></td>
+                                <td>
+                                    <input class="form-control" type="username" id="username" name="username" placeholder="Enter your username..." value="<%= locals.savedUsername %>" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label" for="password">Password</label></td>
+                                <td>
+                                    <input class="form-control" type="password" id="password" name="password" placeholder="Enter you password..." value="<%= locals.savedPassword %>" required />
+                                </td>
+
+                                <intput type="whatever" name="jinsung" value="123"></intput>
+                            </tr>
+                            <tr style="line-height: 70px">
+                                <td colspan="2" style="text-align: center">
+                                    <input class="btn btn-success" type="submit" id="submitButton" value="LOGIN" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </form>
+                <% if (locals.message) { %>
+                    <div id="form-error" class="text-danger">
+                        <%= locals.message %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer>
+    <%- include('./partials/footer'); %>
+</footer>
+
+</html>

@@ -1,0 +1,53 @@
+<!--
+    Centennial College
+    Web Application Development - COMP229 / Section 004
+   
+    Group Project - Survey Website
+   
+    Team:
+     - Carlos Gama    (301257092) / Project Manager
+     - Idris Mustapha (301207535) / Back-end Developer
+     - Jinsung Park   (301241866) / Front-end Developer
+     - Nabin Dotel    (301281044) / Front-end Developer
+     - Shristi Prasai (301310100) / Front-end Developer
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head'); %>
+</head>
+
+<body id="page-top">
+    
+    <!-- Navigation-->
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+    <!-- Page Content-->
+    <% if (surveys.length == 0) { %>
+        <a>There are no surveys available, click here to create a new one.</a>
+    <% } else { %>
+        <table class="table table-striped table-hover">
+            <!-- Header Row -->
+            <tr>
+                <th>Surveys</th>
+            </tr>
+
+            <% for (let index = 0; index < surveys.length; index++) { %>
+                <tr>
+                    <td><%= surveys[index].name %></td>
+                    <td><a href="/surveys/edit/<%= surveys[index]._id %>" class="btn btn-warning">Update</a></td>
+                    <td><a href="/surveys/delete/<%= surveys[index]._id %>" class="btn btn-danger">Delete</a></td>
+                </tr>
+            <% } %>
+        </table>
+    <% } %>
+</body>
+
+<footer>
+    <%- include('./partials/footer'); %>
+</footer>
+
+</html>

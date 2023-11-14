@@ -1,0 +1,68 @@
+/**
+ * Centennial College
+ * Web Application Development - COMP229 / Section 004
+ * 
+ * Group Project - Survey Website
+ * 
+ * Team:
+ *  - Carlos Gama    (301257092) / Project Manager
+ *  - Idris Mustapha (301207535) / Back-end Developer
+ *  - Jinsung Park   (301241866) / Front-end Developer
+ *  - Nabin Dotel    (301281044) / Front-end Developer
+ *  - Shristi Prasai (301310100) / Front-end Developer
+ */
+:root {
+  --bs-primary-rgb: 11, 80, 127;
+  --bs-link-color: #3755b6;
+  --bs-link-hover-color: #2d4697;
+}
+
+.fieldset {
+  border: 1px solid rgb(100, 100, 100);
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px gray;
+  padding: 30px;
+  display: block;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.fieldset-legend {
+  color: rgb(0, 0, 0);
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  text-shadow: black;
+}
+
+.btn {
+  width: 100px;
+  font-weight: bold;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  line-height: 40px;
+}
+
+#contacts {
+  margin: 0 auto;
+}
+
+#form-error {
+  margin-top: 20px;
+}
+
+footer {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
