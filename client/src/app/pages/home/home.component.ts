@@ -18,6 +18,7 @@ export class HomeComponent extends BasePageComponent implements OnInit {
   override ngOnInit(): void {
     this.httpService.getSurveys().subscribe(
       (response: any[]) => {
+        console.log(response);
         this.surveys = response;
       },
       (error: any) => { console.log(error); });
