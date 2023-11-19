@@ -90,8 +90,13 @@ router.post('/update', function(req, res, next) {
 
 // POST route for create a survey
 router.post('/create', function(req, res, next) {
+  let questions = req.body.questions.map((q) => ({
+    questionType: q.questionType,
+    questionText: q.questionText,
+    options: q.options || [], // Empty array if options are not provided
+  }));
 
-  Survey.insertOne({ title: req.body.title, questions: res.body.questions })
+  Survey.create({ title: req.body.title, questions: questions })
           .then((data) => {
             if (data) {
               res.send(data);
