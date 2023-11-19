@@ -1,0 +1,6 @@
+.scroll-list {
+    max-height: 60vh; /* Set the maximum height to 60% of the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+    margin-top: 20px; /* Adjust as needed */
+    margin-bottom: 20px; /* Adjust as needed */
+}  
