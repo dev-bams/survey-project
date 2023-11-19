@@ -19,9 +19,9 @@ let surveyModel = mongoose.Schema({
     title: String,
     questions: [
         {
-            questionType: Number,
-            question: String,
-            options: [String] // 0: shortText, 1: longText, 2: checkBoxes, 3: multipleChoices
+            questionType: Number, // 0: shortText, 1: longText, 2: checkBoxes, 3: multipleChoices
+            questionText: String,
+            options: [String],
         }
     ]
 },
