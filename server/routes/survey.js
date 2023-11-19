@@ -73,8 +73,13 @@ router.get('/update/:id', function(req, res, next) {
 // POST route for edit a survey
 router.post('/update', function(req, res, next) {
   let updatedSurvey = Survey({
-    "title": req.body.title,
-    "questions": req.body.questions
+    _id: req.body.id,
+    title: req.body.title,
+    questions: req.body.questions.map((q) => ({
+      questionType: q.questionType,
+      questionText: q.questionText,
+      options: q.options || [], // Empty array if options are not provided
+    }))
   });
 
   Survey.findOneAndUpdate({ _id: req.body.id }, updatedSurvey )
