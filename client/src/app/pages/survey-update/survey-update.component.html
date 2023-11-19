@@ -1,1 +1,61 @@
 <app-base-page></app-base-page>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <!-- Survey Header -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="surveyTitle" placeholder="Enter the title here..."
+                    aria-label="Survey Title">
+                <div class="input-group-append">
+                    <a href="#" class="btn btn-outline-secondary">DISCARD</a>
+                    <a (click)="addQuestion()" class="btn btn-success">ADD QUESTION</a>
+                    <a href="/" (click)="updateSurvey()" class="btn btn-primary">PUBLISH</a>
+                </div>
+            </div>
+
+            <!-- Survey Questions Scroll List -->
+            <div class="scroll-list" *ngIf="questions.length > 0">
+                <div *ngFor="let question of questions; let i = index" class="accordion"
+                    [attr.id]="'question' + (i+1)">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <a class="accordion-button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + (i+1)" aria-expanded="true"
+                                [attr.aria-controls]="'collapse' + (i+1)">
+                                Question #{{ i+1 }}
+                            </a>
+                        </h2>
+                        <div [attr.id]="'collapse' + (i+1)" class="accordion-collapse collapse show"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" [(ngModel)]="question.questionText"
+                                        placeholder="Type the question here...">
+                                    <div class="input-group-append">
+                                        <a class="btn btn-danger" (click)="deleteQuestion(i)">DELETE</a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" [(ngModel)]="question.questionType">
+                                        <option value="" selected disabled>Select the type of question...</option>
+                                        <option value="0">Type: Short Answer</option>
+                                        <option value="1">Type: Long Answer</option>
+                                        <option value="2">Type: Check Boxes</option>
+                                        <option value="3">Type: Multiple Choices</option>
+                                    </select>
+                                    <div *ngIf="question.questionType == 2 || question.questionType == 3">
+                                        <!-- Dynamic input fields for Multiple Choices -->
+                                        <div *ngFor="let k of [0, 1, 2, 3, 4]; let j = index">
+                                            <input type="text" class="form-control" [(ngModel)]="question.options[j]"
+                                                [placeholder]="'Type the option ' + (j + 1) + ' here...'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
