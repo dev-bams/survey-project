@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BasePageComponent } from '../../partials/base-page/base-page.component';
 import { ActivatedRoute } from '@angular/router';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-survey',
@@ -9,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SurveyComponent extends BasePageComponent implements OnInit {
 
-  constructor (route: ActivatedRoute) {
-    super(route);
+  constructor (route: ActivatedRoute, httpService: HttpService) {
+    super(route, httpService);
   }
 
   override ngOnInit(): void {

@@ -5,109 +5,112 @@
  * Group Project - Survey Website
  * 
  * Team:
- *  - Carlos Gama    (301257092) / Project Manager
- *  - Idris Mustapha (301207535) / Back-end Developer
- *  - Jinsung Park   (301241866) / Front-end Developer
- *  - Nabin Dotel    (301281044) / Front-end Developer
- *  - Shristi Prasai (301310100) / Front-end Developer
+ *  - Carlos Gama       (301257092) / Project Manager
+ *  - Idris Mustapha    (301207535) / Back-end Developer
+ *  - Jinsung Park      (301241866) / Front-end Developer
+ *  - Nabin Dotel       (301281044) / Front-end Developer
+ *  - Shristi Prasai    (301310100) / Front-end Developer
+ *  - Khaleed Opeloyeru (301286462) / Product Owner
  */
-
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
-let Contact = require('../models/contact');
+let Survey = require('../models/survey');
 
-const TITLE = 'Contacts';
-const MSG_NO_CONTACTS = "Your list is empty.";
-const MSG_EXCEPTION = 'Page under maintenance, please come back later.';
-
-// GET contacts page
+// GET route for displaying all surveys
 router.get('/', function(req, res, next) {
-
-  if (!req.session.loggedin) {
-    res.redirect('/login');
-  }
-
   try {
-    Contact.find()
-            .sort({ name: 1 })
+    Survey.find()
+            .sort({ _id: 1 })
             .then((data) => {
               if (data) {
-                res.render('contacts', { title: TITLE, contacts: data });
+                res.send(data);
               }
               else {
-                req.session.message = MSG_NO_CONTACTS;
-                res.render('/contacts', { title: TITLE });
+                res.status(404).end();
               }
             });
   } catch (exception) {
-    console.error(`Failed to list contacts: ${exception}`);
-
-    req.session.message = MSG_EXCEPTION;
-    res.status(500).redirect('/contacts');
+    res.status(500).send(`Failed to list surveys: ${exception}`);
   }
 });
 
-// GET route for displaying the edit page
+// GET route for survey results
+router.get('/results/:id', function(req, res, next) {
+  try {
+    Survey.findOne({ _id: req.params.id })
+            .sort({ _id: 1 })
+            .then((data) => {
+              if (data) {
+                res.send(data);
+              }
+              else {
+                res.status(404).end();
+              }
+            });
+  } catch (exception) {
+    res.status(500).send(`Failed to list surveys: ${exception}`);
+  }
+});
+
+// GET route for displaying a survey
 router.get('/edit/:id', function(req, res, next) {
   try {
-    Contact.findOne({ _id: req.params.id })
+    Survey.findOne({ _id: req.params.id })
             .then((data) => {
               if (data) {
-                res.locals.contactToEdit = data;
-                res.render('contact-edit', { title: TITLE });
+                res.send(data);
               }
               else {
-                console.error(`Trying to edit a contact that doesn't exist: id=[${req.body.id}]`);
-
-                req.session.message = MSG_EXCEPTION;
-                res.status(500).redirect('/contacts');
+                res.status(500).send(`Trying to edit a survey that doesn't exist: id=[${req.body.id}]`);
               }
             });
   } catch (exception) {
-    console.error(`Failed to find the contact by id=[${req.body.id}]: ${exception}`);
-
-    req.session.message = MSG_EXCEPTION;
-    res.status(500).redirect('/contacts');
+    res.status(500).send(`Failed to find the survey by id=[${req.body.id}]: ${exception}`);
   }
 });
 
-// POST route for edit a contact
+// POST route for edit a survey
 router.post('/edit', function(req, res, next) {
-
-  let updatedContact = Contact({
-    "_id": req.body.id,
-    "name": req.body.name,
-    "number": req.body.number,
-    "email": req.body.email
+  let updatedSurvey = Survey({
+    "title": req.body.title,
+    "questions": req.body.questions
   });
 
-  Contact.findOneAndUpdate({ _id: req.body.id }, updatedContact )
-          .then((result) => {
-            if (result) {
-              res.redirect('/contacts');
+  Survey.findOneAndUpdate({ _id: req.body.id }, updatedSurvey )
+          .then((data) => {
+            if (data) {
+              res.send(data);
             }
             else {
-              console.error(`Failed to update the contact: id=[${req.body.id}]`);
-
-              req.session.message = MSG_EXCEPTION;
-              res.status(500).redirect('/contacts');
+              res.status(500).send(`Failed to update the survey: id=[${req.body.id}]`);
             }
           });
 });
 
-// GET route to perform deletion
-router.get('/delete/:id', function(req, res, next) {
-  Contact.deleteOne({ _id: req.params.id })
-          .then((result) => {
-            if (result) {
-              res.redirect('/contacts');
+// POST route for create a survey
+router.post('/create', function(req, res, next) {
+
+  Survey.insertOne({ title: req.body.title, questions: res.body.questions })
+          .then((data) => {
+            if (data) {
+              res.send(data);
             }
             else {
-              console.error(`Failed to delete the contact: id=[${req.body.id}]`);
+              res.status(500).send(`Failed to create the survey: title=[${req.body.title}]`);
+            }
+          });
+});
 
-              req.session.message = MSG_EXCEPTION;
-              res.status(500).redirect('/contacts');
+// GET route to delete a survey
+router.get('/delete/:id', function(req, res, next) {
+  Survey.deleteOne({ _id: req.params.id })
+          .then((data) => {
+            if (data) {
+              res.send(data);
+            }
+            else {
+              res.status(500).send(`Failed to delete the survey: id=[${req.body.id}]`);
             }
           });
 });

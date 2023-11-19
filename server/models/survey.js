@@ -12,14 +12,19 @@
  *  - Shristi Prasai    (301310100) / Front-end Developer
  *  - Khaleed Opeloyeru (301286462) / Product Owner
  */
-
 let mongoose = require('mongoose');
 
 // Create a model class
-let userModel = mongoose.Schema({
-    email: String,
-    password: String
+let surveyModel = mongoose.Schema({
+    title: String,
+    questions: [
+        {
+            questionType: Number,
+            question: String,
+            options: [String] // 0: shortText, 1: longText, 2: checkBoxes, 3: multipleChoices
+        }
+    ]
 },
-{ collection: 'users' });
+{ collection: 'surveys' });
 
-module.exports = mongoose.model('User', userModel);
+module.exports = mongoose.model('Survey', surveyModel);

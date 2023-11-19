@@ -1,1 +1,26 @@
 <app-base-page></app-base-page>
+<div class="container mt-3 mb-3 text-center">
+    <a href="/survey-create" class="btn btn-success">CREATE NEW SURVEY</a>
+</div>
+<!-- Surveys' List -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="list-group">
+                <!-- List Content-->
+                <ng-container *ngIf="surveys.length === 0; else surveyList">
+                    <a href="#">There are no surveys available, click here to create a new one.</a>
+                </ng-container>
+                <ng-template #surveyList>
+                    <div *ngFor="let survey of surveys" class="list-group-item">
+                        <span>{{ survey.title }}</span>
+                        <div class="btn-group">
+                            <a [href]="'/survey-update/' + survey._id" class="btn btn-warning">EDIT</a>
+                            <a href="#" (click)="deleteSurvey(survey._id)" class="btn btn-danger">DELETE</a>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

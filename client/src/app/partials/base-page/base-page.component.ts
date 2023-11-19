@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-base-page',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BasePageComponent implements OnInit {
   title: string;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(protected route: ActivatedRoute, protected httpService: HttpService) {
     this.title = "";
   }
 

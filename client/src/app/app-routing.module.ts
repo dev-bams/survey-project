@@ -8,12 +8,12 @@ import { SurveyResultsComponent } from './pages/survey-results/survey-results.co
 import { SurveyUpdateComponent } from './pages/survey-update/survey-update.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, data: { title: 'Home'} },
+  { path: 'home', component: HomeComponent, data: { title: 'Home' } },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'survey', component: SurveyComponent, data: { title: 'Survey'} },
-  { path: 'survey-create', component: SurveyCreateComponent, data: { title: 'Survey'} },
-  { path: 'survey-results', component: SurveyResultsComponent, data: { title: 'Survey'} },
-  { path: 'survey-update', component: SurveyUpdateComponent, data: { title: 'Survey'} }
+  { path: 'survey', component: SurveyComponent, data: { title: 'Survey' } },
+  { path: 'survey-create', component: SurveyCreateComponent, data: { title: 'Survey' } },
+  { path: 'survey-results', component: SurveyResultsComponent, data: { title: 'Survey' } },
+  { path: 'survey-update/:id', component: SurveyUpdateComponent, data: { title: 'Survey' } }
 ];
 
 @NgModule({

@@ -6,18 +6,19 @@
  * Group Project - Survey Website
  * 
  * Team:
- *  - Carlos Gama    (301257092) / Project Manager
- *  - Idris Mustapha (301207535) / Back-end Developer
- *  - Jinsung Park   (301241866) / Front-end Developer
- *  - Nabin Dotel    (301281044) / Front-end Developer
- *  - Shristi Prasai (301310100) / Front-end Developer
+ *  - Carlos Gama       (301257092) / Project Manager
+ *  - Idris Mustapha    (301207535) / Back-end Developer
+ *  - Jinsung Park      (301241866) / Front-end Developer
+ *  - Nabin Dotel       (301281044) / Front-end Developer
+ *  - Shristi Prasai    (301310100) / Front-end Developer
+ *  - Khaleed Opeloyeru (301286462) / Product Owner
  */
 
 /**
  * Module dependencies.
  */
 
-var app = require('./config/app');
+var app = require('./server/config/app');
 var debug = require('debug')('survey:server');
 var http = require('http');
 
