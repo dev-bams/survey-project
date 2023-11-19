@@ -54,7 +54,7 @@ router.get('/results/:id', function(req, res, next) {
 });
 
 // GET route for displaying a survey
-router.get('/edit/:id', function(req, res, next) {
+router.get('/update/:id', function(req, res, next) {
   try {
     Survey.findOne({ _id: req.params.id })
             .then((data) => {
@@ -71,7 +71,7 @@ router.get('/edit/:id', function(req, res, next) {
 });
 
 // POST route for edit a survey
-router.post('/edit', function(req, res, next) {
+router.post('/update', function(req, res, next) {
   let updatedSurvey = Survey({
     "title": req.body.title,
     "questions": req.body.questions
