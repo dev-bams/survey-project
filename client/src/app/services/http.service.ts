@@ -15,15 +15,15 @@ export class HttpService {
   }
   
   getSurvey(id: string): any {
-    return this.http.get(`${this.baseURL}/survey/edit/${id}`);
+    return this.http.get(`${this.baseURL}/survey/update/${id}`);
   }
   
-  createSurvey(id: any): any {
-    return this.http.post(`${this.baseURL}/survey/edit`, { params : { id: id } });
+  createSurvey(title: string, questions: any): any {
+    return this.http.post(`${this.baseURL}/survey/create`, { title: title, questions: questions });
   }
   
-  editSurvey(id: string): any {
-    return this.http.post(`${this.baseURL}/survey/edit`, { params : { id: id } });
+  updateSurvey(id: any, title: string, questions: any): any {
+    return this.http.post(`${this.baseURL}/survey/update`, { id: id, title: title, questions: questions });
   }
   
   deleteSurvey(id: string): any {

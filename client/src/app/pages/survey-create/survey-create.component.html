@@ -4,11 +4,12 @@
       <div class="col-md-8 mx-auto">
         <!-- Survey Header -->
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Enter the title here..." aria-label="Survey Title">
-          <div class="input-group-append">
-            <a href="/" class="btn btn-outline-secondary">DISCARD</a>
-            <a href="/" class="btn btn-success">ADD QUESTION</a>
-            <a href="/" (click)="createSurvey(survey._id)" class="btn btn-primary">PUBLISH</a>
+                <input type="text" class="form-control" [(ngModel)]="surveyTitle" placeholder="Enter the title here..."
+                    aria-label="Survey Title">
+                <div class="input-group-append">
+                    <a href="#" class="btn btn-outline-secondary">DISCARD</a>
+                    <a (click)="addQuestion()" class="btn btn-success">ADD QUESTION</a>
+                    <a href="/" (click)="createSurvey()" class="btn btn-primary">PUBLISH</a>
           </div>
         </div>
   
@@ -36,7 +37,7 @@
                                 <option>Type: Check Boxes</option>
                                 <option>Type: Multiple Choices</option>
                             </select>
-                        </div>
+                                    <div *ngIf="question.questionType == 2 || question.questionType == 3">
                     
                     </div>
                 </div>
