@@ -11,7 +11,7 @@ export class HttpService {
   constructor(private http: HttpClient) { }
   
   isAuthenticated(): boolean {
-    return false;
+    return true;
   }
 
   auth(email: string, password: string) {
