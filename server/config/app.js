@@ -41,6 +41,23 @@ let surveyRouter = require('../routes/survey');
 // Express initialization
 let app = express();
 
+// Configuring express-session
+app.use(session({
+  secret: 'gama0057',
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Moving the session parameter core session parameters to locals
+app.use((req, res, next) => {
+  res.locals.loggedin = req.session.loggedin;
+
+  // Temporary parameter
+  res.locals.message = req.session.message;
+  delete req.session.message;
+  next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs'); // express -e

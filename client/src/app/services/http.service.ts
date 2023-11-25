@@ -9,6 +9,14 @@ export class HttpService {
   baseURL: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
+  
+  isAuthenticated(): boolean {
+    return false;
+  }
+
+  auth(email: string, password: string) {
+    return this.http.post(`${this.baseURL}/survey/auth`, { email: email, questions: password });
+  }
 
   getSurveys(): any {
     return this.http.get(`${this.baseURL}/survey`);

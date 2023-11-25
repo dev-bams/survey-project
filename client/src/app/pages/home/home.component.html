@@ -9,7 +9,7 @@
             <div class="list-group">
                 <!-- List Content-->
                 <ng-container *ngIf="surveys.length === 0; else surveyList">
-                    <a href="#">There are no surveys available, click here to create a new one.</a>
+                    <a href="/survey-create" class="text-center">There are no surveys available, click here to create a new one.</a>
                 </ng-container>
                 <ng-template #surveyList>
                     <div *ngFor="let survey of surveys" class="list-group-item">

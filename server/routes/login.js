@@ -20,9 +20,13 @@ let User = require('../models/user');
 // POST authenticate credentials
 router.post('/auth', function(req, res, next) {
     try {
-        User.findOne({ username: req.body.username, password: req.body.password })
+        User.findOne({ email: req.body.email, password: req.body.password })
             .then((data) => { 
                 if (data) {
+                    req.session.loggedin = true;
+                    req.session.savedEmail = req.body.email;
+                    req.session.savedPassword = req.body.password;
+
                     res.send(data);
                 }
                 else {

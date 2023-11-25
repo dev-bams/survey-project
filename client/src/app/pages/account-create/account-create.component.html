@@ -1,0 +1,32 @@
+<app-base-page></app-base-page>
+
+<div class="container col-md-4 mt-5 border rounded p-3">
+  <div class="text-center">
+    <label class="fs-2 fw-bold">Create Account</label>
+  </div>
+  
+  <div class="form-group row mt-3">
+    <label for="email" class="col-sm-3 col-form-label">Email</label>
+    <div class="col-sm-9">
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" [(ngModel)]="email" required>
+    </div>
+  </div>
+
+  <div class="form-group row mt-3">
+    <label for="password" class="col-sm-3 col-form-label">Password</label>
+    <div class="col-sm-9">
+      <input type="password" class="form-control" id="password" placeholder="Enter your password" [(ngModel)]="password" required>
+    </div>
+  </div>
+
+  <div class="form-group row mt-3">
+    <label for="confirmPassword" class="col-sm-3 col-form-label">Confirm Password</label>
+    <div class="col-sm-9">
+      <input type="password" class="form-control" id="confirmPassword" placeholder="Enter your password again" [(ngModel)]="passwordConfirmation" required>
+    </div>
+  </div>
+
+  <div class="row col text-center px-5 mt-5">
+    <input type="button" id="submitButton" class="btn btn-primary" (click)="createAccount()" value="SUBMIT">
+  </div>
+</div>
