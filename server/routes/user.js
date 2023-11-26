@@ -41,7 +41,7 @@ router.post('/auth', function(req, res, next) {
 // POST create account
 router.post('/create', function(req, res, next) {
     try {
-        User.findOne({ email: req.body.email, password: req.body.password })
+        User.findOne({ email: req.body.email })
             .then((data) => { 
                 if (data) {
                     res.status(409).send(`Account already exists: email=[${req.body.email}]`);
