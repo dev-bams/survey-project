@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BasePageComponent } from '../../partials/base-page/base-page.component';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../services/http.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,8 @@ import { HttpService } from '../../services/http.service';
 export class HomeComponent extends BasePageComponent implements OnInit {
   surveys: any[] = [];
 
-  constructor (route: ActivatedRoute, httpService: HttpService) {
-    super(route, httpService);
+  constructor (route: ActivatedRoute, httpService: HttpService, sessionService: SessionService) {
+    super(route, httpService, sessionService);
   }
 
   override ngOnInit(): void {

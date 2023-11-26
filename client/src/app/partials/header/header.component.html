@@ -12,7 +12,17 @@
      - Shristi Prasai    (301310100) / Front-end Developer
      - Khaleed Opeloyeru (301286462) / Product Owner
 -->
-<header>
-    <h1>Survey</h1>
-    <img src="../../../assets/images/logo.png" alt="Logo" class="logo">
+<header class="container-fluid">
+    <div class="col">
+        <h1>Survey</h1>
+    </div>
+    <div class="col-auto">
+        <img src="../../../assets/images/logo.png" alt="Logo" class="logo">
+    </div>
+
+    <!-- Display only if email is not empty -->
+    <div class="col text-end mt-3" *ngIf="email !== ''">
+        <a>Welcome {{ email }}!</a>
+        <a class="btn btn-outline-secondary mx-3" (click)="logout()">Logout</a>
+    </div>
 </header>

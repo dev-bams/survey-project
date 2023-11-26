@@ -27,6 +27,6 @@
   </div>
 
   <div class="row col text-center px-5 mt-5">
-    <input type="button" id="submitButton" class="btn btn-primary" (click)="createAccount()" value="SUBMIT">
+    <input type="button" id="submitButton" class="btn btn-primary" (click)="createAccount()" [disabled]="!isPasswordConfirmationValid()" value="SUBMIT">
   </div>
 </div>

@@ -10,12 +10,12 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
   
-  isAuthenticated(): boolean {
-    return true;
+  createAccount(email: string, password: string) {
+    return this.http.post(`${this.baseURL}/user/create`, { email: email, password: password });
   }
 
   auth(email: string, password: string) {
-    return this.http.post(`${this.baseURL}/survey/auth`, { email: email, questions: password });
+    return this.http.post(`${this.baseURL}/user/auth`, { email: email, password: password });
   }
 
   getSurveys(): any {

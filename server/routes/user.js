@@ -38,4 +38,21 @@ router.post('/auth', function(req, res, next) {
     }
 });
 
+// POST create account
+router.post('/create', function(req, res, next) {
+    try {
+        User.create({ email: req.body.email, password: req.body.password })
+            .then((data) => {
+            if (data) {
+                res.send(data);
+            }
+            else {
+                res.status(500).send(`Failed to create account: email=[${req.body.email}]`);
+            }
+            });
+    } catch (exception) {
+        res.status(500).send(`Failed to create account: ${exception}`);
+    }
+});
+
 module.exports =  router;

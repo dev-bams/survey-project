@@ -35,7 +35,7 @@ mongodb.on('error', console.error.bind(console, `Failed to connect to ${DB.URI}`
 mongodb.once('open', () => { console.log('Database connected!'); });
 
 // Routes
-let loginRouter = require('../routes/login');
+let userRouter = require('../routes/user');
 let surveyRouter = require('../routes/survey');
 
 // Express initialization
@@ -70,7 +70,7 @@ app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 app.use(cors())
 
-app.use('/login', loginRouter);
+app.use('/user', userRouter);
 app.use('/survey', surveyRouter);
 
 // catch 404 and forward to error handler
