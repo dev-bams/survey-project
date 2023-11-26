@@ -17,7 +17,9 @@ export class HeaderComponent implements OnInit {
     // Subscribe to router events
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd)
-    ).subscribe(this.refreshInfo);
+    ).subscribe(() => {
+      this.refreshInfo();
+    });
 
     // Initial refresh
     this.refreshInfo();

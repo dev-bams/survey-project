@@ -13,6 +13,7 @@ import { SessionService } from '../../services/session.service';
 export class LoginComponent extends BasePageComponent implements OnInit {
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
 
   constructor (route: ActivatedRoute,
                httpService: HttpService,
@@ -38,6 +39,14 @@ export class LoginComponent extends BasePageComponent implements OnInit {
         // Redirect to the home page upon successful login
         this.router.navigate(['/']);
       },
-      (error: any) => { console.log(error); });
+      (error: any) => { 
+        this.errorMessage = 'Invalid credentials, please try again.';
+        console.log(error); 
+      });
+  }
+
+  // Reset showInvalidCredentials when the email or password is changed
+  onCredentialsChange(): void {
+    this.errorMessage = '';
   }
 }

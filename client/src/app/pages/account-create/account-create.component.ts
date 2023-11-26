@@ -14,6 +14,7 @@ export class AccountCreateComponent extends BasePageComponent implements OnInit 
   email: string = '';
   password: string = '';
   passwordConfirmation: string = '';
+  errorMessage: string = '';
 
   constructor (route: ActivatedRoute,
                httpService: HttpService,
@@ -37,8 +38,24 @@ export class AccountCreateComponent extends BasePageComponent implements OnInit 
         this.sessionService.saveUser(this.email, this.password);
 
         // Redirect to the home page upon successful account creation
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       },
-      (error: any) => { console.log(error); });
+      (error: any) => { 
+        this.errorMessage = 'An account with this email already exists. Please use a different email.';
+        console.log(error); 
+      });
+  }
+
+  // Reset showInvalidCredentials when the email or password is changed
+  onEmailChange(): void {
+    this.errorMessage = '';
+  }
+
+  onPasswordChange(): void {
+    if (this.password === '' || this.passwordConfirmation === '' || this.password === this.passwordConfirmation) {
+      this.errorMessage = '';
+    } else {
+      this.errorMessage = 'Password and confirmation password do not match.';
+    }
   }
 }
