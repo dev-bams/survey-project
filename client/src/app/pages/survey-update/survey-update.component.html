@@ -1,11 +1,21 @@
 <app-base-page></app-base-page>
+<!-- This code represents part of a web application that uses the Angular framework to create and edit surveys.
+    A brief description of each part is as follows: -->
+
+<!-- A container using Bootstrap style that surrounds the survey editing area. -->
 <div class="container mt-5">
+
+    <!-- Uses a Bootstrap-style grid system to represent the layout.-->
     <div class="row">
+        <!-- A centrally aligned survey editing area that occupies 8 Bootstrap-style columns.-->
         <div class="col-md-8 mx-auto">
             <!-- Survey Header -->
+            <!-- Represents an input group and contains a group of buttons and a text box where you can enter the survey title.-->
             <div class="input-group mb-3">
+                <!-- Links the value of the input field to the variable "surveyTitle" through two-way data binding. -->
                 <input type="text" class="form-control" [(ngModel)]="surveyTitle" placeholder="Enter the title here..."
                     aria-label="Survey Title">
+                <!-- These buttons are used to cancel a survey, add questions, and publish a survey, respectively. -->
                 <div class="input-group-append">
                     <a href="#" class="btn btn-outline-secondary">DISCARD</a>
                     <a (click)="addQuestion()" class="btn btn-success">ADD QUESTION</a>
@@ -14,37 +24,52 @@
             </div>
 
             <!-- Survey Questions Scroll List -->
+            <!-- A scrollable list area that appears only when there is at least one question. -->
             <div class="scroll-list" *ngIf="questions.length > 0">
-                <div *ngFor="let question of questions; let i = index" class="accordion"
-                    [attr.id]="'question' + (i+1)">
+                <!-- Repeat for each question -->
+                <div *ngFor="let question of questions; let i = index" class="accordion" [attr.id]="'question' + (i+1)">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
+                            <!-- Button with expand and collapse effect when clicked -->
+                            <!-- Give a unique ID to the question and indicate question number like Question #1, #2.. -->
                             <a class="accordion-button" data-bs-toggle="collapse"
                                 [attr.data-bs-target]="'#collapse' + (i+1)" aria-expanded="true"
                                 [attr.aria-controls]="'collapse' + (i+1)">
                                 Question #{{ i+1 }}
                             </a>
                         </h2>
+
+                        <!-- Grant editing role to the question using Bootstrap's 'accordion' component-->
+
+                        <!-- Give a unique ID and connect to the data-bs-target property-->
                         <div [attr.id]="'collapse' + (i+1)" class="accordion-collapse collapse show"
                             data-bs-parent="#accordionExample">
+                            <!-- Allows you to open only one question out of several questions -->
                             <div class="accordion-body">
                                 <div class="input-group mb-3">
+                                    <!-- Uses Angular's two-way data binding, linking the user's question text to question.questionText-->
                                     <input type="text" class="form-control" [(ngModel)]="question.questionText"
                                         placeholder="Type the question here...">
+                                    <!-- Delete function event properties-->
                                     <div class="input-group-append">
                                         <a class="btn btn-danger" (click)="deleteQuestion(i)">DELETE</a>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
+                                    <!-- Drop-down menu to check question type-->
                                     <select class="form-control" [(ngModel)]="question.questionType">
+                                        <!-- Default option, shown when nothing is selected -->
                                         <option value="" selected disabled>Select the type of question...</option>
                                         <option value="0">Type: Short Answer</option>
                                         <option value="1">Type: Long Answer</option>
                                         <option value="2">Type: Check Boxes</option>
                                         <option value="3">Type: Multiple Choices</option>
                                     </select>
+                                    <!-- Use Angular *ngif, so that multiple selections are displayed -->
                                     <div *ngIf="question.questionType == 2 || question.questionType == 3">
                                         <!-- Dynamic input fields for Multiple Choices -->
+                                        <!-- Repeat the array from 0 to 4, a total of 5 times. Content can be entered in each option -->
                                         <div *ngFor="let k of [0, 1, 2, 3, 4]; let j = index">
                                             <input type="text" class="form-control" [(ngModel)]="question.options[j]"
                                                 [placeholder]="'Type the option ' + (j + 1) + ' here...'">
