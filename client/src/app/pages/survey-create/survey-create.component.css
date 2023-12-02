@@ -4,3 +4,16 @@
     margin-top: 20px; /* Adjust as needed */
     margin-bottom: 20px; /* Adjust as needed */
 }  
+
+.btn button-success {
+    margin: auto;
+}
+
+body {
+    font-family:lucida console;
+    color: #ffc95e;
+}
+.row {
+    padding: 40px;
+    margin: 40px;
+}

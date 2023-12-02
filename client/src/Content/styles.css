@@ -23,3 +23,8 @@ footer {
     right: 0;
     text-align: center;
 }
+
+.btn button-success {
+    margin: auto;
+}
+
