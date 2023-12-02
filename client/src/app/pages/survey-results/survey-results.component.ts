@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BasePageComponent } from '../../partials/base-page/base-page.component';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../services/http.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-survey-results',
@@ -10,8 +11,8 @@ import { HttpService } from '../../services/http.service';
 })
 export class SurveyResultsComponent extends BasePageComponent implements OnInit {
 
-  constructor (route: ActivatedRoute, httpService: HttpService) {
-    super(route, httpService);
+  constructor (route: ActivatedRoute, httpService: HttpService, sessionService: SessionService) {
+    super(route, httpService, sessionService);
   }
 
   override ngOnInit(): void {

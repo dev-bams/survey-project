@@ -9,6 +9,14 @@ export class HttpService {
   baseURL: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
+  
+  createAccount(email: string, password: string) {
+    return this.http.post(`${this.baseURL}/user/create`, { email: email, password: password });
+  }
+
+  auth(email: string, password: string) {
+    return this.http.post(`${this.baseURL}/user/auth`, { email: email, password: password });
+  }
 
   getSurveys(): any {
     return this.http.get(`${this.baseURL}/survey`);

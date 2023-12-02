@@ -19,6 +19,9 @@ let Survey = require('../models/survey');
 
 // GET route for displaying all surveys
 router.get('/', function(req, res, next) {
+  
+  this.blockIfUnauthorizedRequest();
+
   try {
     Survey.find()
             .sort({ _id: 1 })
@@ -37,6 +40,9 @@ router.get('/', function(req, res, next) {
 
 // GET route for survey results
 router.get('/results/:id', function(req, res, next) {
+
+  this.blockIfUnauthorizedRequest();
+
   try {
     Survey.findOne({ _id: req.params.id })
             .sort({ _id: 1 })
@@ -55,6 +61,9 @@ router.get('/results/:id', function(req, res, next) {
 
 // GET route for displaying a survey
 router.get('/update/:id', function(req, res, next) {
+
+  this.blockIfUnauthorizedRequest();
+
   try {
     Survey.findOne({ _id: req.params.id })
             .then((data) => {
@@ -72,6 +81,9 @@ router.get('/update/:id', function(req, res, next) {
 
 // POST route for edit a survey
 router.post('/update', function(req, res, next) {
+
+  this.blockIfUnauthorizedRequest();
+
   let updatedSurvey = Survey({
     _id: req.body.id,
     title: req.body.title,
@@ -95,6 +107,9 @@ router.post('/update', function(req, res, next) {
 
 // POST route for create a survey
 router.post('/create', function(req, res, next) {
+
+  this.blockIfUnauthorizedRequest();
+
   let questions = req.body.questions.map((q) => ({
     questionType: q.questionType,
     questionText: q.questionText,
@@ -114,6 +129,9 @@ router.post('/create', function(req, res, next) {
 
 // GET route to delete a survey
 router.get('/delete/:id', function(req, res, next) {
+
+  this.blockIfUnauthorizedRequest();
+
   Survey.deleteOne({ _id: req.params.id })
           .then((data) => {
             if (data) {
@@ -124,5 +142,11 @@ router.get('/delete/:id', function(req, res, next) {
             }
           });
 });
+
+function blockIfUnauthorizedRequest() {
+  if (!req.session.loggedin) {
+    res.status(401).send(`User not logged in`);
+  }
+}
 
 module.exports = router;

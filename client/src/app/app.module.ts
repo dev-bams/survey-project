@@ -13,6 +13,8 @@ import { SurveyCreateComponent } from './pages/survey-create/survey-create.compo
 import { SurveyUpdateComponent } from './pages/survey-update/survey-update.component';
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
 import { BasePageComponent } from './partials/base-page/base-page.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AccountCreateComponent } from './pages/account-create/account-create.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { BasePageComponent } from './partials/base-page/base-page.component';
     SurveyCreateComponent,
     SurveyUpdateComponent,
     SurveyResultsComponent,
-    BasePageComponent
+    BasePageComponent,
+    LoginComponent,
+    AccountCreateComponent
   ],
   imports: [
     BrowserModule,
